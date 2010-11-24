@@ -1,0 +1,21 @@
+<% require "./lib/pygments" -%>
+
+Gem::Specification.new do |s|
+  s.name              = "pygments"
+  s.version           = "<%= Pygments::VERSION %>"
+  s.summary           = "A Ruby gem that vendors Pygments"
+  s.description       = "A Ruby gem that vendors Pygments"
+  s.authors           = ["Damian Janowski", "Michel Martens"]
+  s.email             = ["djanowski@dimaion.com", "michel@soveran.com"]
+  s.homepage          = "http://github.com/djanowski/pygments"
+  s.files = <%= Dir[
+    "*.gemspec",
+    "LICENSE",
+    "README.markdown",
+    "Rakefile",
+    "lib/**/*.rb",
+    "pygmentize.py",
+    "test/*.*",
+    "vendor/**/*",
+  ].inspect %>
+end
