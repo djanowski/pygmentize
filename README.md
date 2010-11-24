@@ -1,30 +1,15 @@
-Cacho
-=====
+Pygmentize
+==========
 
-Cache aware, Redis based HTTP client.
+A standalone Pygments for Ruby.
 
-Description
------------
+    require "pygments"
 
-Cacho is a HTTP client that understands cache responses and stores results in Redis.
+    source = "function foo() { return 'bar'; }"
 
-Usage
------
+    Pygments.pygmentize(source, :javascript)
 
-When you try to GET a remote resource, Cacho proxies the request to the original server
-and returns an array of status, headers and body. If possible, it will also store the
-response and serve it in subsequent requests.
-
-    status, headers, body = Cacho.get("http://localhost:4000/cacheable")
-
-You can also supply custom headers:
-
-    status, headers, body = Cacho.get("http://localhost:4000/echo", "Accept" => "text/plain")
-
-Installation
-------------
-
-    $ gem install cacho
+You need to have Python installed.
 
 License
 -------
