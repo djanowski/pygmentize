@@ -1,7 +1,7 @@
 <% require "./lib/pygments" -%>
 
 Gem::Specification.new do |s|
-  s.name              = "pygments"
+  s.name              = "pygmentize"
   s.version           = "<%= Pygments::VERSION %>"
   s.summary           = "A Ruby gem that vendors Pygments"
   s.description       = "A Ruby gem that vendors Pygments"
@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
     "README.markdown",
     "Rakefile",
     "lib/**/*.rb",
-    "pygmentize.py",
     "test/*.*",
     "vendor/**/*",
   ].inspect %>
