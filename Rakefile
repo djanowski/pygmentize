@@ -5,7 +5,7 @@ task :test do
 end
 
 task :cleanup do
-  `rm vendor/pygments/**/*.pyc`
+  `find . -name "*.pyc" -delete`
 end
 
 task :default => :test
