@@ -1,0 +1,5 @@
+#! /usr/bin/env ruby
+
+require "pygmentize"
+
+exec("#{Pygmentize.bin} #{Shellwords.shelljoin(ARGV)}")

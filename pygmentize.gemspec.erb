@@ -1,13 +1,13 @@
-<% require "./lib/pygments" -%>
+<% require "./lib/pygmentize" -%>
 
 Gem::Specification.new do |s|
   s.name              = "pygmentize"
-  s.version           = "<%= Pygments::VERSION %>"
+  s.version           = "<%= Pygmentize::VERSION %>"
   s.summary           = "A Ruby gem that vendors Pygments"
   s.description       = "A Ruby gem that vendors Pygments"
   s.authors           = ["Damian Janowski", "Michel Martens"]
   s.email             = ["djanowski@dimaion.com", "michel@soveran.com"]
-  s.homepage          = "http://github.com/djanowski/pygments"
+  s.homepage          = "http://github.com/djanowski/pygmentize"
   s.files = <%= Dir[
     "*.gemspec",
     "LICENSE",
@@ -17,4 +17,6 @@ Gem::Specification.new do |s|
     "test/*.*",
     "vendor/**/*",
   ].inspect %>
+
+  s.executables.push("pygmentize")
 end

@@ -3,11 +3,15 @@ Pygmentize
 
 A standalone Pygments for Ruby.
 
-    require "pygments"
+    require "pygmentize"
 
     source = "function foo() { return 'bar'; }"
 
-    Pygments.pygmentize(source, :javascript)
+    Pygmentize.process(source, :javascript)
+
+You can also use the binary from the command line:
+
+    $ pygmentize -l javascript somefile.js
 
 You need to have Python installed.
 

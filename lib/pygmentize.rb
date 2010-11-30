@@ -1,13 +1,13 @@
 require "shellwords"
 
-class Pygments
+class Pygmentize
   VERSION = "0.0.1"
 
   def self.bin
     "/usr/bin/env python #{File.expand_path("../vendor/pygmentize.py", File.dirname(__FILE__))}"
   end
 
-  def self.pygmentize(source, lexer)
+  def self.process(source, lexer)
     args = [
       "-l", lexer.to_s,
       "-f", "html",

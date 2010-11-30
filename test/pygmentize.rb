@@ -1,10 +1,10 @@
 # encoding: UTF-8
 
-require File.expand_path("../lib/pygments", File.dirname(__FILE__))
+require File.expand_path("../lib/pygmentize", File.dirname(__FILE__))
 require "nokogiri"
 
 test "colorizes output" do
-  output = Pygments.pygmentize(%Q[{foo: "bar"}], :javascript)
+  output = Pygmentize.process(%Q[{foo: "bar"}], :javascript)
 
   doc = Nokogiri::HTML(output)
 
@@ -13,7 +13,7 @@ test "colorizes output" do
 end
 
 test "handles encodings" do
-  output = Pygments.pygmentize(%Q[{foo: "bar", baz: "qüx"}], :javascript)
+  output = Pygmentize.process(%Q[{foo: "bar", baz: "qüx"}], :javascript)
 
   assert output.encoding == Encoding::UTF_8
 end
