@@ -4,4 +4,8 @@ task :test do
   Cutest.run(Dir["test/pygmentize.rb"])
 end
 
+task :cleanup do
+  `rm vendor/pygments/**/*.pyc`
+end
+
 task :default => :test
