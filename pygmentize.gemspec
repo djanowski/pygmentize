@@ -1,13 +1,22 @@
+require "./lib/pygmentize"
 
 Gem::Specification.new do |s|
   s.name              = "pygmentize"
-  s.version           = "0.0.2"
+  s.version           = Pygmentize::VERSION
   s.summary           = "A Ruby gem that vendors Pygments"
   s.description       = "A Ruby gem that vendors Pygments"
   s.authors           = ["Damian Janowski", "Michel Martens"]
   s.email             = ["djanowski@dimaion.com", "michel@soveran.com"]
   s.homepage          = "http://github.com/djanowski/pygmentize"
-  s.files = ["pygmentize.gemspec", "LICENSE", "Rakefile", "lib/pygmentize.rb", "test/pygmentize.rb", "vendor/pygmentize.py", "vendor/pygments", "vendor/pygments/__init__.py", "vendor/pygments/AUTHORS", "vendor/pygments/cmdline.py", "vendor/pygments/console.py", "vendor/pygments/filter.py", "vendor/pygments/filters", "vendor/pygments/filters/__init__.py", "vendor/pygments/formatter.py", "vendor/pygments/formatters", "vendor/pygments/formatters/__init__.py", "vendor/pygments/formatters/_mapping.py", "vendor/pygments/formatters/bbcode.py", "vendor/pygments/formatters/html.py", "vendor/pygments/formatters/img.py", "vendor/pygments/formatters/latex.py", "vendor/pygments/formatters/other.py", "vendor/pygments/formatters/rtf.py", "vendor/pygments/formatters/svg.py", "vendor/pygments/formatters/terminal.py", "vendor/pygments/formatters/terminal256.py", "vendor/pygments/lexer.py", "vendor/pygments/lexers", "vendor/pygments/lexers/__init__.py", "vendor/pygments/lexers/_asybuiltins.py", "vendor/pygments/lexers/_clbuiltins.py", "vendor/pygments/lexers/_luabuiltins.py", "vendor/pygments/lexers/_mapping.py", "vendor/pygments/lexers/_phpbuiltins.py", "vendor/pygments/lexers/_vimbuiltins.py", "vendor/pygments/lexers/agile.py", "vendor/pygments/lexers/asm.py", "vendor/pygments/lexers/compiled.py", "vendor/pygments/lexers/dotnet.py", "vendor/pygments/lexers/functional.py", "vendor/pygments/lexers/math.py", "vendor/pygments/lexers/other.py", "vendor/pygments/lexers/parsers.py", "vendor/pygments/lexers/special.py", "vendor/pygments/lexers/templates.py", "vendor/pygments/lexers/text.py", "vendor/pygments/lexers/web.py", "vendor/pygments/LICENSE", "vendor/pygments/plugin.py", "vendor/pygments/scanner.py", "vendor/pygments/style.py", "vendor/pygments/styles", "vendor/pygments/styles/__init__.py", "vendor/pygments/styles/autumn.py", "vendor/pygments/styles/borland.py", "vendor/pygments/styles/bw.py", "vendor/pygments/styles/colorful.py", "vendor/pygments/styles/default.py", "vendor/pygments/styles/emacs.py", "vendor/pygments/styles/friendly.py", "vendor/pygments/styles/fruity.py", "vendor/pygments/styles/manni.py", "vendor/pygments/styles/monokai.py", "vendor/pygments/styles/murphy.py", "vendor/pygments/styles/native.py", "vendor/pygments/styles/pastie.py", "vendor/pygments/styles/perldoc.py", "vendor/pygments/styles/tango.py", "vendor/pygments/styles/trac.py", "vendor/pygments/styles/vim.py", "vendor/pygments/styles/vs.py", "vendor/pygments/token.py", "vendor/pygments/unistring.py", "vendor/pygments/util.py"]
+  s.files = Dir[
+    "*.gemspec",
+    "LICENSE",
+    "README.markdown",
+    "Rakefile",
+    "lib/**/*.rb",
+    "test/*.*",
+    "vendor/**/*",
+  ]
 
   s.executables.push("pygmentize")
 end

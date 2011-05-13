@@ -1,7 +1,7 @@
 require "shellwords"
 
 class Pygmentize
-  VERSION = "0.0.2"
+  VERSION = "0.0.3"
 
   def self.bin
     "/usr/bin/env python #{File.expand_path("../vendor/pygmentize.py", File.dirname(__FILE__))}"
