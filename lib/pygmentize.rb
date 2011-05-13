@@ -7,8 +7,8 @@ class Pygmentize
     "/usr/bin/env python #{File.expand_path("../vendor/pygmentize.py", File.dirname(__FILE__))}"
   end
 
-  def self.process(source, lexer)
-    args = [
+  def self.process(source, lexer, args = [])
+    args += [
       "-l", lexer.to_s,
       "-f", "html",
       "-O", "encoding=#{source.encoding}"
