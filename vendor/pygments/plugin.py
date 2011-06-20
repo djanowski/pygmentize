@@ -35,9 +35,10 @@
     :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import with_statement
+
 import warnings
 
-from __future__ import with_statement
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
