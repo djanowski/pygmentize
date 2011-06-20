@@ -37,7 +37,8 @@
 """
 import warnings
 
-import with_statement from __future__
+from __future__ import with_statement
+
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
     try:
