@@ -37,12 +37,13 @@
 """
 import warnings
 
-with warnings.catch_warnings():
-    warnings.simplefilter("ignore")
-    try:
-        import pkg_resources
-    except ImportError:
-        pkg_resources = None
+_filters = warnings.filters
+warnings.simplefilter("ignore")
+try:
+    import pkg_resources
+except ImportError:
+    pkg_resources = None
+warnings.filters = _filters
 
 LEXER_ENTRY_POINT = 'pygments.lexers'
 FORMATTER_ENTRY_POINT = 'pygments.formatters'
