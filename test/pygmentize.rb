@@ -17,3 +17,9 @@ test "handles encodings" do
 
   assert output.encoding == Encoding::UTF_8
 end
+
+test "caches result of colourisation" do
+  result1 = Pygmentize.process(%Q[{foo: "bar"}], :javascript).object_id
+  result2 = Pygmentize.process(%Q[{foo: "bar"}], :javascript).object_id
+  assert result1.object_id == result2.object_id
+end
