@@ -5,7 +5,7 @@
 
     Formatter for LaTeX fancyvrb output.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -21,13 +21,18 @@ def escape_tex(text, commandprefix):
     return text.replace('\\', '\x00'). \
                 replace('{', '\x01'). \
                 replace('}', '\x02'). \
-                replace('^', '\x03'). \
-                replace('_', '\x04'). \
                 replace('\x00', r'\%sZbs{}' % commandprefix). \
                 replace('\x01', r'\%sZob{}' % commandprefix). \
                 replace('\x02', r'\%sZcb{}' % commandprefix). \
-                replace('\x03', r'\%sZca{}' % commandprefix). \
-                replace('\x04', r'\%sZus{}' % commandprefix)
+                replace('^', r'\%sZca{}' % commandprefix). \
+                replace('_', r'\%sZus{}' % commandprefix). \
+                replace('&', r'\%sZam{}' % commandprefix). \
+                replace('<', r'\%sZlt{}' % commandprefix). \
+                replace('>', r'\%sZgt{}' % commandprefix). \
+                replace('#', r'\%sZsh{}' % commandprefix). \
+                replace('%', r'\%sZpc{}' % commandprefix). \
+                replace('$', r'\%sZdl{}' % commandprefix). \
+                replace('~', r'\%sZti{}' % commandprefix)
 
 
 DOC_TEMPLATE = r'''
@@ -81,6 +86,9 @@ DOC_TEMPLATE = r'''
 # * \PY@tok@classname sets the \PY@it etc. to reflect the chosen style
 #   for its class.
 # * \PY resets the style, parses the classnames and then calls \PY@do.
+#
+# Tip: to read this code, print it out in substituted form using e.g.
+# >>> print STYLE_TEMPLATE % {'cp': 'PY'}
 
 STYLE_TEMPLATE = r'''
 \makeatletter
@@ -101,6 +109,13 @@ STYLE_TEMPLATE = r'''
 \def\%(cp)sZob{\char`\{}
 \def\%(cp)sZcb{\char`\}}
 \def\%(cp)sZca{\char`\^}
+\def\%(cp)sZam{\char`\&}
+\def\%(cp)sZlt{\char`\<}
+\def\%(cp)sZgt{\char`\>}
+\def\%(cp)sZsh{\char`\#}
+\def\%(cp)sZpc{\char`\%%}
+\def\%(cp)sZdl{\char`\$}
+\def\%(cp)sZti{\char`\~}
 %% for compatibility with earlier versions
 \def\%(cp)sZat{@}
 \def\%(cp)sZlb{[}
@@ -131,12 +146,12 @@ class LatexFormatter(Formatter):
 
     .. sourcecode:: latex
 
-        \begin{Verbatim}[commandchars=@\[\]]
-        @PY[k][def ]@PY[n+nf][foo](@PY[n][bar]):
-            @PY[k][pass]
+        \begin{Verbatim}[commandchars=\\{\}]
+        \PY{k}{def }\PY{n+nf}{foo}(\PY{n}{bar}):
+            \PY{k}{pass}
         \end{Verbatim}
 
-    The special command used here (``@PY``) and all the other macros it needs
+    The special command used here (``\PY``) and all the other macros it needs
     are output by the `get_style_defs` method.
 
     With the `full` option, a complete LaTeX document is output, including
@@ -249,11 +264,13 @@ class LatexFormatter(Formatter):
                 cmndef += (r'\def\$$@tc##1{\textcolor[rgb]{%s}{##1}}' %
                            rgbcolor(ndef['color']))
             if ndef['border']:
-                cmndef += (r'\def\$$@bc##1{\fcolorbox[rgb]{%s}{%s}{##1}}' %
+                cmndef += (r'\def\$$@bc##1{\setlength{\fboxsep}{0pt}'
+                           r'\fcolorbox[rgb]{%s}{%s}{\strut ##1}}' %
                            (rgbcolor(ndef['border']),
                             rgbcolor(ndef['bgcolor'])))
             elif ndef['bgcolor']:
-                cmndef += (r'\def\$$@bc##1{\colorbox[rgb]{%s}{##1}}' %
+                cmndef += (r'\def\$$@bc##1{\setlength{\fboxsep}{0pt}'
+                           r'\colorbox[rgb]{%s}{\strut ##1}}' %
                            rgbcolor(ndef['bgcolor']))
             if cmndef == '':
                 continue
@@ -269,7 +286,8 @@ class LatexFormatter(Formatter):
         cp = self.commandprefix
         styles = []
         for name, definition in self.cmd2def.iteritems():
-            styles.append(r'\def\%s@tok@%s{%s}' % (cp, name, definition))
+            styles.append(r'\expandafter\def\csname %s@tok@%s\endcsname{%s}' %
+                          (cp, name, definition))
         return STYLE_TEMPLATE % {'cp': self.commandprefix,
                                  'styles': '\n'.join(styles)}
 
