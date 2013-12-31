@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.version           = Pygmentize::VERSION
   s.summary           = "A Ruby gem that vendors Pygments"
   s.description       = "A Ruby gem that vendors Pygments"
-  s.authors           = ["Damian Janowski", "Michel Martens"]
-  s.email             = ["djanowski@dimaion.com", "michel@soveran.com"]
+  s.authors           = ["Eric Wood", "Damian Janowski", "Michel Martens"]
+  s.email             = ["eric@ericwood.org", "djanowski@dimaion.com", "michel@soveran.com"]
   s.homepage          = "http://github.com/djanowski/pygmentize"
   s.files = Dir[
     "*.gemspec",
