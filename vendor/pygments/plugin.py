@@ -32,17 +32,13 @@
         yourfilter = yourfilter:YourFilter
 
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-import warnings
-
-with warnings.catch_warnings():
-    warnings.simplefilter("ignore")
-    try:
-        import pkg_resources
-    except ImportError:
-        pkg_resources = None
+try:
+    import pkg_resources
+except ImportError:
+    pkg_resources = None
 
 LEXER_ENTRY_POINT = 'pygments.lexers'
 FORMATTER_ENTRY_POINT = 'pygments.formatters'

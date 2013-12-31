@@ -5,7 +5,7 @@
 
     Formatter for Pixmap output.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -18,7 +18,7 @@ from pygments.util import get_bool_opt, get_int_opt, \
 
 # Import this carefully
 try:
-    import Image, ImageDraw, ImageFont
+    from PIL import Image, ImageDraw, ImageFont
     pil_available = True
 except ImportError:
     pil_available = False

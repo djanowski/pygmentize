@@ -5,7 +5,7 @@
 
     Basic token types and the standard tokens.
 
-    :copyright: Copyright 2006-2010 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2012 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -39,9 +39,6 @@ class _TokenType(tuple):
         self.subtypes.add(new)
         new.parent = self
         return new
-
-    def __hash__(self):
-        return hash(tuple(self))
 
     def __repr__(self):
         return 'Token' + (self and '.' or '') + '.'.join(self)
