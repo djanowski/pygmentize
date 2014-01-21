@@ -31,3 +31,14 @@ test "handles command line options" do
   assert opts.include?("-O bar=#{Shellwords.escape(to_escape)}")
 end
 
+test "handles linenos option" do
+  # the linenos option adds line numbering to the output
+  output = Pygmentize.process(%Q[{foo: "bar"}], :javascript, linenos: true)
+
+  doc = Nokogiri::HTML(output)
+
+  # line numbers are added as a table with the following elements
+  assert doc.at_css("td.linenos")
+  assert doc.at_css("div.linenodiv")
+end
+
